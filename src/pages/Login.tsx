@@ -3,10 +3,10 @@ import type { LoginInput } from "../types"
 import { useForm } from "react-hook-form"
 import {login as loginRequest} from "../api/auth"
 import { useMutation } from "@tanstack/react-query"
-import { getErrorMessage } from "../api/client"
 import { useAuth } from "../context/AuthContext"
 import { useNavigate } from "react-router-dom"
 import { getHomePath } from "../routes/getHomePath"
+import ErrorMessage from "../components/ErrorMessage"
 export default function Login() {
     const navigate = useNavigate()
     const {login} = useAuth()
@@ -38,7 +38,7 @@ export default function Login() {
             <label htmlFor="password">סיסמה</label>
             <input id="password" type="password" {...register("password",{required:"יש להזין סיסמה"})}/>
             <p>{errors.password?.message}</p>
-            <p>{loginMutation.error && getErrorMessage(loginMutation.error)}</p>
+            {loginMutation.error && <ErrorMessage error={loginMutation.error} />}
             <button disabled={loginMutation.isPending} type="submit">{loginMutation.isPending?"מתחבר...":"התחברות"}</button>
         </form>
     )

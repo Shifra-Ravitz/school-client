@@ -1,10 +1,18 @@
 
 
-const Student = ()=>{
-    return <>פרטי תלמידות - שם,כתובת,טלפון,ת.ז</>
+import { useParams } from "react-router-dom"
+import AssignmentTabs from "../components/AssignmentTabs"
+
+const Students = () => {
+    const { id } = useParams()
+    return <div>
+        <AssignmentTabs assignmentId={id!} />
+        <p>פרטי תלמידות - שם, כתובת, טלפון, ת.ז</p>
+    </div>
 }
 
-export default Student
+export default Students
+
 
 
 

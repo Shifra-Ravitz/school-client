@@ -2,6 +2,7 @@ import { Navigate, Outlet } from "react-router-dom"
 import type { Role } from "../types"
 import { useAuth } from "../context/AuthContext"
 import { getHomePath } from "./getHomePath"
+import Loading from "../components/Loading"
 interface ProtectedRouteProps{
     allowedRoles:Role[]
 }
@@ -9,7 +10,7 @@ interface ProtectedRouteProps{
 const ProtectedRoute = ({allowedRoles}:ProtectedRouteProps) => {
 const{user,isLoading} = useAuth()
     if(isLoading)
-        return <>טוען...</>
+        return <Loading/>
     if(!user)
         return <Navigate to="/login" replace/>
     if(!allowedRoles.includes(user.role))
