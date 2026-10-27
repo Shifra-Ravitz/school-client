@@ -27,6 +27,6 @@ export async function getFinalGrades(assignmentId:number)
 //הצגת תלמידות הכיתה - students
 export async function getClassStudents(classId:number,search:string,sortBy:string)
 {
-    const response = await api.get<User[]>(`/classes/${classId}/students`,{params:{search,sortBy}})
+    const response = await api.get<User[]>(`/classes/${classId}/students`,{params:{search:search || undefined,sortBy}})
     return response.data
 }
