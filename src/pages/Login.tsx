@@ -4,8 +4,12 @@ import { useForm } from "react-hook-form"
 import {login as loginRequest} from "../api/auth"
 import { useMutation } from "@tanstack/react-query"
 import { getErrorMessage } from "../api/client"
-
+import { useAuth } from "../context/AuthContext"
+import { useNavigate } from "react-router-dom"
+import { getHomePath } from "../routes/getHomePath"
 export default function Login() {
+    const navigate = useNavigate()
+    const {login} = useAuth()
     const {
         register,
         handleSubmit,
@@ -13,7 +17,10 @@ export default function Login() {
     } = useForm<LoginInput>()
     const loginMutation = useMutation({
         mutationFn:loginRequest,
-        onSuccess:(response)=>console.log(response)   
+        onSuccess:(response)=>{
+            login(response.token,response.user)
+            navigate(getHomePath(response.user.role))
+        }   
     })
     const onSubmit = (data:LoginInput) => loginMutation.mutate(data)
     return (
