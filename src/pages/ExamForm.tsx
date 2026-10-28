@@ -41,11 +41,12 @@ const ExamForm = ()=>{
     const queryClient = useQueryClient()
     const examMutation = useMutation({
         mutationFn: (data:ExamInput) => isEdit ? updateExam(Number(examId),data) : createExam(data),
-        onSuccess: ()=>{
-            queryClient.invalidateQueries({queryKey:["finalGrades",assignmentId]})
+        onSuccess: async ()=>{
             queryClient.invalidateQueries({queryKey:["periods",assignmentId]})
             if(isEdit)
                 queryClient.invalidateQueries({queryKey:["exam",examId]})
+            //מחכים שהטבלה החדשה תגיע לפני המעבר, כדי שהמבחן כבר יופיע בה
+            await queryClient.invalidateQueries({queryKey:["finalGrades",assignmentId],refetchType:"all"})
             navigate(`/teacher/assignments/${assignmentId}/grades`)
         },
         onError: (error)=>{
@@ -134,39 +135,4 @@ export default ExamForm
 
 
 
-// export default function Login() {
-//     const navigate = useNavigate()
-//     const {login} = useAuth()
-//     const {
-//         register,
-//         handleSubmit,
-//         formState: { errors },
-//     } = useForm<LoginInput>()
-//     const loginMutation = useMutation({
-//         mutationFn:loginRequest,
-//         onSuccess:(response)=>{
-//             login(response.token,response.user)
-//             navigate(getHomePath(response.user.role))
-//         }   
-//     })
-//     const onSubmit = (data:LoginInput) => loginMutation.mutate(data)
-//     return (
-//         <form noValidate onSubmit={handleSubmit(onSubmit)}>
-//             <label htmlFor="email">כתובת המייל שלך</label>
-//             <input id="email" placeholder="name@example.com" type="email" 
-//             {...register("email",{
-//                 required:"יש להזין מייל",
-//                 pattern:{
-//                     value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-//                     message:"כתובת מייל לא תקינה"
-//                 }
-//             })} />
-//             <p>{errors.email?.message}</p>
-//             <label htmlFor="password">סיסמה</label>
-//             <input id="password" type="password" {...register("password",{required:"יש להזין סיסמה"})}/>
-//             <p>{errors.password?.message}</p>
-//             {loginMutation.error && <ErrorMessage error={loginMutation.error} />}
-//             <button disabled={loginMutation.isPending} type="submit">{loginMutation.isPending?"מתחבר...":"התחברות"}</button>
-//         </form>
-//     )
-// }
+
