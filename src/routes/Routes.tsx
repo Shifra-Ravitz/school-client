@@ -1,8 +1,9 @@
-import { createBrowserRouter, Navigate } from "react-router-dom";
+import { createBrowserRouter } from "react-router-dom";
 import AllGrades from "../pages/AllGrades";
 import ExamForm from "../pages/ExamForm";
 import ExamGrades from "../pages/ExamGrades";
 import Grades from "../pages/Grades";
+import Home from "../pages/Home";
 import Login from "../pages/Login";
 import MyClasses from "../pages/MyClasses";
 import Students from "../pages/Students";
@@ -16,7 +17,7 @@ const routes = createBrowserRouter([
         children: [
             {
                 path: "",
-                element: <Navigate to="/login" replace></Navigate>
+                element: <Home></Home>
             },
             {
                 element: <ProtectedRoute allowedRoles={["TEACHER", "PRINCIPAL"]}></ProtectedRoute>,

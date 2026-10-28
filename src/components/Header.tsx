@@ -1,6 +1,7 @@
 import { Link, useNavigate } from "react-router-dom"
 import { useAuth } from "../context/AuthContext"
 import type { Role } from "../types"
+import Logo from "./Logo"
 const roleNames:Record<Role, string>={
     TEACHER:"מורה",
     PRINCIPAL:"מנהלת",
@@ -18,6 +19,7 @@ const Header=()=>{
         return null
     const isStudent = user.role === "STUDENT"
     return <header>
+        <Logo/>
         <div>
             <span>שלום, {user.firstName}</span>
             <span>{roleNames[user.role]}</span>

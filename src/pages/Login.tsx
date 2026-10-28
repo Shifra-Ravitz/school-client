@@ -7,6 +7,7 @@ import { useAuth } from "../context/AuthContext"
 import { useNavigate } from "react-router-dom"
 import { getHomePath } from "../routes/getHomePath"
 import ErrorMessage from "../components/ErrorMessage"
+import Logo from "../components/Logo"
 export default function Login() {
     const navigate = useNavigate()
     const {login} = useAuth()
@@ -24,6 +25,8 @@ export default function Login() {
     })
     const onSubmit = (data:LoginInput) => loginMutation.mutate(data)
     return (
+        <div>
+        <Logo size="large"/>
         <form noValidate onSubmit={handleSubmit(onSubmit)}>
             <label htmlFor="email">כתובת המייל שלך</label>
             <input id="email" placeholder="name@example.com" type="email" 
@@ -41,6 +44,7 @@ export default function Login() {
             {loginMutation.error && <ErrorMessage error={loginMutation.error} />}
             <button disabled={loginMutation.isPending} type="submit">{loginMutation.isPending?"מתחבר...":"התחברות"}</button>
         </form>
+        </div>
     )
 }
 
