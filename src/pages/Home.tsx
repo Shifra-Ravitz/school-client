@@ -29,15 +29,15 @@ const Home = () => {
         return <Navigate to={getHomePath(user.role)} replace />
 
     return (
-        <div className="min-h-screen flex flex-col">
-            <div className="max-w-5xl w-full mx-auto px-4 py-4 flex items-center justify-between">
+        <div className="flex flex-col">
+            <div className="max-w-5xl w-full mx-auto flex items-center justify-between">
                 <Logo />
                 <Link to="/login" className="text-primary font-semibold hover:underline">
                     כניסה
                 </Link>
             </div>
 
-            <main className="flex-1 max-w-5xl w-full mx-auto px-4">
+            <div className="max-w-5xl w-full mx-auto">
                 <section className="text-center py-16">
                     <h1 className="text-4xl md:text-5xl leading-tight mb-6">
                         כל הציונים של בית הספר,
@@ -75,7 +75,7 @@ const Home = () => {
                         {CONTACT_EMAIL}
                     </a>
                 </section>
-            </main>
+            </div>
 
             <footer className="text-center text-sm text-slate-500 py-6 border-t border-slate-200">
                 ציונים בקליק

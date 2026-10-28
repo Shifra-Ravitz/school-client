@@ -34,17 +34,20 @@ const Students = () => {
                 <AssignmentTabs assignmentId={id!} />
             </div>
             <h1>{assignment.subject.name} · {assignment.class.name} · {assignment.studentsCount} תלמידות</h1>
-            <input value={search} placeholder="חיפוש לפי שם או תעודת זהות" onChange={({ target }) => setSearch(target.value)} />
-            <label>
+            <div className="flex flex-wrap items-center gap-4 mb-4">
+            <input className="input max-w-sm" value={search} placeholder="חיפוש לפי שם או תעודת זהות" onChange={({ target }) => setSearch(target.value)} />
+            <label className="flex items-center gap-2 text-sm font-semibold text-slate-700">
                 מיון לפי:
-                <select value={sortBy} onChange={({ target }) => setSortBy(target.value)}>
+                <select className="input w-auto" value={sortBy} onChange={({ target }) => setSortBy(target.value)}>
                     <option value="lastName">שם משפחה</option>
                     <option value="firstName">שם פרטי</option>
                     <option value="address">כתובת</option>
                 </select>
             </label>
+            </div>
             {studentsLoading?<Loading/>:studentsError?<ErrorMessage error={studentsError}/>:students.length === 0?<EmptyState text="אין תלמידות להצגה"/>:
-                <table>
+                <div className="table-wrap">
+                <table className="data-table">
                     <thead>
                         <tr>
                             <th>שם משפחה</th>
@@ -66,6 +69,7 @@ const Students = () => {
                         ))}
                     </tbody>
                 </table>
+                </div>
             }
             
 

@@ -5,10 +5,9 @@ interface AssignmentTabsProps{
 }
 const AssignmentTabs = ({assignmentId}:AssignmentTabsProps)=>{
     return(
-    <nav>
-        <NavLink to={`/teacher/assignments/${assignmentId}/students`}>תלמידות</NavLink>
-        {" | "}
-        <NavLink to={`/teacher/assignments/${assignmentId}/grades`}>ציונים</NavLink>
+    <nav className="flex gap-2 mb-6 border-b border-slate-200">
+        <NavLink className="tab" to={`/teacher/assignments/${assignmentId}/students`}>תלמידות</NavLink>
+        <NavLink className="tab" to={`/teacher/assignments/${assignmentId}/grades`}>ציונים</NavLink>
 
     </nav>
     

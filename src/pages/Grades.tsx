@@ -33,16 +33,18 @@ const Grades = () => {
     return <>
         <h3>הציונים שלי</h3>
 
-        <select value={selectedSubjectId} onChange={(e) => setSelectedSubjectId(e.target.value)}>
+        <select className="input w-auto mb-6" value={selectedSubjectId} onChange={(e) => setSelectedSubjectId(e.target.value)}>
             <option value="">כל המקצועות</option>
             {data.subjects.map((subject) => (
                 <option key={subject.assignmentId} value={subject.subject.id}>{subject.subject.name}</option>
             ))}
         </select>
 
+        <div className="flex flex-col gap-4">
         {filteredSubjects.map((subject) => (
             <SubjectCard key={subject.assignmentId} isOpen={openSubjectId === subject.assignmentId} onToggle={() => handleToggle(subject.assignmentId)} subject={subject} />
         ))}
+        </div>
     </>
 }
 export default Grades

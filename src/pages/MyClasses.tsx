@@ -20,13 +20,17 @@ const MyClasses = ()=>{
     return <EmptyState text="אין לך כיתות משובצות"/>
     return(<>
         <h1>הכיתות שלי</h1>
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {data.map((assignment)=>(
             <p key={assignment.id}>
-                <Link to={`/teacher/assignments/${assignment.id}/students`}>
-                {assignment.subject.name} · {assignment.class.name} · {assignment.studentsCount} תלמידות
+                <Link className="card block p-6 transition hover:shadow-md hover:border-gold" to={`/teacher/assignments/${assignment.id}/students`}>
+                <span className="block text-xl font-bold text-primary">{assignment.subject.name}</span>
+                <span className="block text-slate-600">כיתה {assignment.class.name}</span>
+                <span className="inline-block mt-4 text-sm font-semibold bg-gold-light text-primary rounded-full px-3 py-1">{assignment.studentsCount} תלמידות</span>
                 </Link>
             </p>
         ))}
+        </div>
     </>)    
 }
 

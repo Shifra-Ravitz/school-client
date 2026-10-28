@@ -4,7 +4,7 @@ interface EmptyStateProps{
 }
 const EmptyState = ({text}:EmptyStateProps)=>{
     return(
-    <p>{text}</p>
+    <p className="card text-center text-slate-500 py-10 px-6">{text}</p>
 )}
 export default EmptyState
 

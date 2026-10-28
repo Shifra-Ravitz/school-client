@@ -82,10 +82,10 @@ const ExamForm = ()=>{
     }
 
     return (
-        <form noValidate onSubmit={handleSubmit(onSubmit)}>
+        <form className="card max-w-xl mx-auto p-8" noValidate onSubmit={handleSubmit(onSubmit)}>
         <h3>{isEdit?"עריכת מבחן":"מבחן חדש"}</h3>
-        <label htmlFor="title">שם המבחן</label>
-        <input id="title" type="text" {...register("title",{required:"יש להזין שם מבחן",
+        <label className="label" htmlFor="title">שם המבחן</label>
+        <input className="input" id="title" type="text" {...register("title",{required:"יש להזין שם מבחן",
         minLength: {
       value: 2,
       message: "שם המבחן חייב להכיל לפחות 2 תווים"
@@ -93,20 +93,20 @@ const ExamForm = ()=>{
     maxLength: {
       value: 80,
       message: "שם המבחן יכול להכיל עד 80 תווים בלבד"}})}/>
-        <p>{errors.title?.message}</p>
-        <label htmlFor="date">תאריך</label>
-        <input id="date" type="date" {...register("date",{required:"יש להזין תאריך"})}/>
-        <p>{errors.date?.message}</p>
-        <label htmlFor="periodId">תקופה</label>
-        <select id="periodId" {...register("periodId",{required:"יש לבחור תקופה",valueAsNumber:true})}>
+        <p className="field-error">{errors.title?.message}</p>
+        <label className="label" htmlFor="date">תאריך</label>
+        <input className="input" id="date" type="date" {...register("date",{required:"יש להזין תאריך"})}/>
+        <p className="field-error">{errors.date?.message}</p>
+        <label className="label" htmlFor="periodId">תקופה</label>
+        <select className="input" id="periodId" {...register("periodId",{required:"יש לבחור תקופה",valueAsNumber:true})}>
             <option value="">בחרי תקופה</option>
             {periods.items.map((period)=>(
                 <option key={period.id} value={period.id}>{period.name}</option>
             ))}
         </select>
-        <p>{errors.periodId?.message}</p>
-        <label htmlFor="weight">משקל (באחוזים)</label>
-        <input id="weight" type="number" {...register("weight",{required:"יש להזין משקל",valueAsNumber:true,
+        <p className="field-error">{errors.periodId?.message}</p>
+        <label className="label" htmlFor="weight">משקל (באחוזים)</label>
+        <input className="input" id="weight" type="number" {...register("weight",{required:"יש להזין משקל",valueAsNumber:true,
         min: {
       value: 1,
       message: "המשקל חייב להיות לפחות 1"
@@ -116,17 +116,19 @@ const ExamForm = ()=>{
       message: "המשקל גבוה ממה שנשאר בתקופה"
     },
     validate: (value) => Number.isInteger(value) || "המשקל חייב להיות מספר שלם"})}/>
-        {selectedPeriod && <span>נשאר עוד {remaining}%</span>}
-        <p>{errors.weight?.message}</p>
-        <label htmlFor="description">תיאור (רשות)</label>
-        <textarea id="description" {...register("description",{
+        {selectedPeriod && <span className="block text-sm text-slate-500 mt-1">נשאר עוד {remaining}%</span>}
+        <p className="field-error">{errors.weight?.message}</p>
+        <label className="label" htmlFor="description">תיאור (רשות)</label>
+        <textarea className="input min-h-24" id="description" {...register("description",{
     maxLength: {
       value: 500,
       message: "התיאור יכול להכיל עד 500 תווים בלבד"}})}/>
-        <p>{errors.description?.message}</p>
+        <p className="field-error">{errors.description?.message}</p>
         {showGeneralError && <ErrorMessage error={examMutation.error} />}
-        <button disabled={examMutation.isPending} type="submit">{examMutation.isPending?"שומר...":isEdit?"שמירה":"הוספה"}</button>
-        <Link to={`/teacher/assignments/${assignmentId}/grades`}>ביטול</Link>
+        <div className="flex gap-3 mt-2">
+        <button className="btn" disabled={examMutation.isPending} type="submit">{examMutation.isPending?"שומר...":isEdit?"שמירה":"הוספה"}</button>
+        <Link className="btn-outline" to={`/teacher/assignments/${assignmentId}/grades`}>ביטול</Link>
+        </div>
         </form>
     )
 }

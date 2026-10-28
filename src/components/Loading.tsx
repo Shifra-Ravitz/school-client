@@ -1,6 +1,6 @@
 const Loading = ()=>{
     return(
-    <p>טוען...</p>
+    <p className="text-center text-slate-500 py-12">טוען...</p>
     
 )}
 export default Loading

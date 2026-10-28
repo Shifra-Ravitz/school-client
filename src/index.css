@@ -25,11 +25,81 @@
     @apply text-xl font-semibold text-primary mb-2;
   }
 
+  h3 {
+    @apply text-2xl font-bold text-primary mb-4;
+  }
+
   button {
     @apply cursor-pointer;
   }
+}
 
-  a.active {
-    @apply font-bold underline;
+/* מחלקות משותפות שחוזרות בהרבה עמודים */
+@layer components {
+  /* כרטיס לבן */
+  .card {
+    @apply bg-white rounded-2xl border border-slate-200 shadow-sm;
+  }
+
+  /* כפתור ראשי, כחול */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 bg-primary text-white font-semibold px-5 py-2.5 rounded-xl shadow-sm transition hover:bg-primary-light disabled:opacity-60 disabled:cursor-not-allowed;
+  }
+
+  /* כפתור משני, לבן עם מסגרת */
+  .btn-outline {
+    @apply inline-flex items-center justify-center gap-2 bg-white text-slate-700 font-semibold px-5 py-2.5 rounded-xl border border-slate-300 transition hover:bg-slate-50;
+  }
+
+  /* כפתור קטן עם סמל בלבד */
+  .icon-btn {
+    @apply inline-flex w-8 h-8 items-center justify-center rounded-lg transition hover:bg-white/20 disabled:opacity-50;
+  }
+
+  /* שדות בטופס */
+  .label {
+    @apply block text-sm font-semibold text-slate-700 mb-1;
+  }
+
+  .input {
+    @apply w-full rounded-xl border border-slate-300 bg-white px-3 py-2 transition focus:outline-none focus:border-gold focus:ring-2 focus:ring-gold/40;
+  }
+
+  .field-error {
+    @apply text-sm text-red-600 min-h-5 mt-1 mb-2;
+  }
+
+  /* טבלה: העטיפה מאפשרת גלילה לצדדים כשהטבלה רחבה */
+  .table-wrap {
+    @apply bg-white rounded-2xl border border-slate-200 shadow-sm overflow-x-auto;
+  }
+
+  .data-table {
+    @apply w-full text-sm;
+  }
+
+  .data-table th {
+    @apply bg-primary text-white font-semibold px-3 py-3 text-start align-bottom;
+  }
+
+  .data-table td {
+    @apply px-3 py-2.5 border-t border-slate-100;
+  }
+
+  .data-table tbody tr:nth-child(even) {
+    @apply bg-slate-50;
+  }
+
+  .data-table tbody tr:hover {
+    @apply bg-gold-light/40;
+  }
+
+  /* לשוניות "תלמידות | ציונים" */
+  .tab {
+    @apply px-4 py-2 -mb-px border-b-2 border-transparent font-semibold text-slate-500 transition hover:text-primary;
+  }
+
+  .tab.active {
+    @apply border-gold text-primary;
   }
 }
