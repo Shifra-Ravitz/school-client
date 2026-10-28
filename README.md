@@ -1,32 +1,106 @@
-# React + TypeScript + Vite
+# ציונים בקליק: מערכת ציונים לבית ספר
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+אתר שבו מורות מנהלות את המבחנים ואת הציונים של הכיתות שלהן, ותלמידות רואות את הציונים שלהן בכל מקצוע.
 
-Currently, two official plugins are available:
+- **האתר בענן:** (הקישור יתווסף אחרי ההעלאה ל־Render)
+- **קוד השרת:** https://github.com/Shifra-Ravitz/school-server
+- **מגישה:** שפרה רביץ, shifra4139@gmail.com
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+> השרת בענן נמצא במסלול חינמי ו"נרדם" אחרי רבע שעה בלי שימוש. הכניסה הראשונה אחרי זה יכולה לקחת עד דקה.
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## משתמשים לכניסה
 
-## Expanding the Oxlint configuration
+| תפקיד | מייל | סיסמה |
+| --- | --- | --- |
+| מורה | `miriam.cohen@bais-yaakov-demo.example` | `Demo1234!` |
+| מורה (אנגלית בכל הכיתות) | `dvora.horowitz@bais-yaakov-demo.example` | `Demo1234!` |
+| תלמידה: חיה גולדברג, ד'1 | `goldberg.family@example.com` | `Demo1234!` |
+| מנהלת (נכנסת לדפים של המורה) | `menahelet@bais-yaakov-demo.example` | `Demo1234!` |
 
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
+---
 
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+## מה יש באתר
+
+### מורה
+1. **הכיתות שלי:** רשימת הכיתות והמקצועות שהמורה מלמדת, למשל "תורה · ד'1".
+2. **תלמידות:** טבלת התלמידות בכיתה (שם, כתובת, טלפון, תעודת זהות), עם חיפוש ומיון.
+3. **ציונים:** טבלה של כל התלמידות מול כל המבחנים, עם ציון לכל תקופה וציון שנתי.
+4. **מבחן חדש ועריכת מבחן:** טופס עם כותרת, תאריך, תקופה, משקל ותיאור, ובדיקת תקינות לכל שדה.
+5. **הזנת ציונים:** ציון והערכה לכל תלמידה במבחן אחד.
+6. **מחיקת מבחן.**
+
+### תלמידה
+1. **הציונים שלי:** רשימת המקצועות עם המורה והציון השנתי.
+2. סינון לפי מקצוע.
+3. לחיצה על מקצוע פותחת את הפירוט: התקופות, המבחנים, הציון וההערכה בכל מבחן.
+
+### לכל המשתמשות
+- כניסה עם מייל וסיסמה, ומעבר אוטומטי לדף הבית לפי התפקיד.
+- הכניסה נשמרת גם אחרי רענון הדף.
+- כל משתמשת רואה רק את הדפים שמותרים לתפקיד שלה. ניסיון להיכנס לדף אחר מחזיר אותה לדף שלה.
+
+---
+
+## טכנולוגיות
+
+| נושא | מה בשימוש |
+| --- | --- |
+| שפה וכלי בנייה | React, TypeScript, Vite |
+| ניתוב | React Router |
+| טפסים ובדיקת תקינות | React Hook Form |
+| פניות לשרת | React Query, axios |
+| המשתמשת המחוברת | Context |
+| עיצוב | Tailwind CSS |
+| שרת ומסד נתונים | Node.js, Express, Prisma, PostgreSQL (בריפו נפרד) |
+| ענן | Render (אתר ושרת), Neon (מסד נתונים) |
+
+---
+
+## איך הדרישות מתקיימות
+
+| דרישה | איפה |
+| --- | --- |
+| כניסה למערכת | דף הכניסה |
+| שני סוגי משתמשים | מורה ותלמידה, עם דפים ותפריטים שונים |
+| אובייקט מרכזי עם 5 שדות לפחות | מבחן: כותרת, תאריך, תקופה, משקל, תיאור |
+| רשימה | הכיתות שלי, תלמידות, ציונים |
+| הוספה ועריכה | טופס המבחן, והזנת הציונים |
+| שדה בחירה | תקופה בטופס המבחן, מקצוע בדף הציונים של התלמידה |
+| חיפוש, סינון ומיון | חיפוש ומיון בטבלת התלמידות, סינון לפי מקצוע אצל התלמידה |
+| שרת ומסד נתונים | כל הנתונים מגיעים מהשרת ונשמרים במסד הנתונים |
+| Routing | ניתוב לכל דף, ושומר שבודק את התפקיד |
+| Forms + Validation | כניסה, טופס מבחן, הזנת ציונים |
+| React Query | כל הפניות לשרת, כולל מצב טעינה והודעות שגיאה |
+| Context | המשתמשת המחוברת וה־Token |
+
+---
+
+## מבנה התיקיות
+
+```
+src/
+  api/          פניות לשרת, קובץ לכל נושא
+  types/        טיפוסי TypeScript, קובץ לכל נושא
+  context/      AuthContext: המשתמשת המחוברת
+  routes/       הניתוב, והשומר שבודק הרשאות
+  components/   קומפוננטות משותפות: סרגל עליון, טעינה, שגיאה, כרטיס מקצוע ועוד
+  pages/        הדפים
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+---
+
+## הרצה במחשב
+
+1. מפעילים את השרת לפי ההוראות בריפו של השרת.
+2. יוצרים בתיקייה הזו קובץ `.env` עם כתובת השרת:
+   ```
+   VITE_API_URL=http://localhost:3000/api
+   ```
+3. מתקינים ומפעילים:
+   ```
+   npm install
+   npm run dev
+   ```
+4. נכנסים לכתובת `http://localhost:5173`.
