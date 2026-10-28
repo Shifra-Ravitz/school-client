@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom"
+
 type LogoProps = {
     size?: "small" | "large"
 }
@@ -5,7 +7,7 @@ type LogoProps = {
 const Logo = ({ size = "small" }: LogoProps) => {
     const isLarge = size === "large"
     return (
-        <div className="flex items-center gap-2">
+        <Link to="/" className="flex items-center gap-2" title="לדף הבית">
             <svg
                 viewBox="0 0 48 48"
                 className={isLarge ? "w-16 h-16" : "w-10 h-10"}
@@ -17,7 +19,7 @@ const Logo = ({ size = "small" }: LogoProps) => {
             <span className={isLarge ? "text-3xl font-bold text-primary" : "text-xl font-bold text-primary"}>
                 ציונים <span className="text-gold">בקליק</span>
             </span>
-        </div>
+        </Link>
     )
 }
 
