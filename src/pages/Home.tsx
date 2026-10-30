@@ -38,34 +38,36 @@ const Home = () => {
             </div>
 
             <div className="max-w-5xl w-full mx-auto">
-                <section className="text-center py-16">
-                    <h1 className="text-4xl md:text-5xl leading-tight mb-6">
+                <section className="relative isolate text-center py-16">
+                    <div className="absolute -z-10 top-0 start-0 w-72 h-72 rounded-full bg-gold-light blur-3xl opacity-70 motion-safe:animate-float"></div>
+                    <div className="absolute -z-10 bottom-0 end-0 w-72 h-72 rounded-full bg-primary/10 blur-3xl motion-safe:animate-float [animation-delay:-3s]"></div>
+                    <h1 className="text-4xl md:text-5xl leading-tight mb-6 motion-safe:animate-fade-up">
                         כל הציונים של בית הספר,
                         <br />
                         <span className="text-gold">במקום אחד</span>
                     </h1>
-                    <p className="text-lg text-slate-600 max-w-2xl mx-auto mb-8">
+                    <p className="text-lg text-slate-600 max-w-2xl mx-auto mb-8 motion-safe:animate-fade-up [animation-delay:150ms]">
                         מערכת פשוטה שבה המורות מנהלות את המבחנים והציונים של הכיתות שלהן,
                         והתלמידות עוקבות אחרי ההישגים שלהן לאורך השנה.
                     </p>
                     <Link
                         to="/login"
-                        className="inline-block bg-primary text-white text-lg font-semibold px-8 py-3 rounded-xl shadow hover:bg-primary-light"
+                        className="inline-block bg-primary text-white text-lg font-semibold px-8 py-3 rounded-xl shadow transition hover:bg-primary-light hover:shadow-lg motion-safe:animate-fade-up [animation-delay:300ms]"
                     >
                         כניסה למערכת
                     </Link>
                 </section>
 
-                <section className="grid gap-4 md:grid-cols-3 mb-12">
+                <section className="stagger grid gap-4 md:grid-cols-3 mb-12">
                     {features.map((feature) => (
-                        <div key={feature.title} className="bg-white rounded-2xl p-6 shadow-sm border border-slate-200">
+                        <div key={feature.title} className="bg-white rounded-2xl p-6 shadow-sm border border-slate-200 transition hover:shadow-md hover:border-gold">
                             <h2>{feature.title}</h2>
                             <p className="text-slate-600">{feature.text}</p>
                         </div>
                     ))}
                 </section>
 
-                <section className="bg-gold-light border-2 border-gold rounded-2xl p-8 mb-16 text-center">
+                <section className="bg-gold-light border-2 border-gold rounded-2xl p-8 mb-16 text-center motion-safe:animate-fade-up [animation-delay:1s]">
                     <h2 className="text-2xl">מנהלת?</h2>
                     <p className="text-slate-700 max-w-2xl mx-auto mb-4">
                         רוצה להקל על המורות בהזנת הציונים ועל התלמידות במעקב אחריהם?
